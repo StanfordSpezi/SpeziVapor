@@ -1,14 +1,14 @@
 <!--
                   
-This source file is part of the TemplatePackage open source project
+This source file is part of the Stanford Spezi open source project
 
-SPDX-FileCopyrightText: 2022 Stanford University and the project authors (see CONTRIBUTORS.md)
+SPDX-FileCopyrightText: 2025 Stanford University and the project authors (see CONTRIBUTORS.md)
 
 SPDX-License-Identifier: MIT
              
 -->
 
-# TemplatePackage
+# Spezi Vapor
 
 [![Build and Test](https://github.com/StanfordBDHG/SwiftPackageTemplate/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/StanfordBDHG/SwiftPackageTemplate/actions/workflows/build-and-test.yml)
 [![codecov](https://codecov.io/gh/StanfordBDHG/SwiftPackageTemplate/branch/main/graph/badge.svg?token=X7BQYSUKOH)](https://codecov.io/gh/StanfordBDHG/SwiftPackageTemplate)
@@ -48,8 +48,8 @@ This project is licensed under the MIT License. See [Licenses](https://github.co
 
 
 ## Contributors
-This project is developed as part of the Stanford Byers Center for Biodesign at Stanford University.
-See [CONTRIBUTORS.md](https://github.com/StanfordBDHG/SwiftPackageTemplate/tree/main/CONTRIBUTORS.md) for a full list of all TemplatePackage contributors.
+This project is developed as part of the Stanford Musallem Center for Biodesign at Stanford University.
+See [CONTRIBUTORS.md](https://github.com/StanfordBDHG/SwiftPackageTemplate/tree/main/CONTRIBUTORS.md) for a full list of all Spezi Vapor contributors.
 
-![Stanford Byers Center for Biodesign Logo](https://raw.githubusercontent.com/StanfordBDHG/.github/main/assets/biodesign-footer-light.png#gh-light-mode-only)
-![Stanford Byers Center for Biodesign Logo](https://raw.githubusercontent.com/StanfordBDHG/.github/main/assets/biodesign-footer-dark.png#gh-dark-mode-only)
+![Stanford Musallem Center for Biodesign Logo](https://raw.githubusercontent.com/StanfordBDHG/.github/main/assets/biodesign-footer-light.png#gh-light-mode-only)
+![Stanford Musallem Center for Biodesign Logo](https://raw.githubusercontent.com/StanfordBDHG/.github/main/assets/biodesign-footer-dark.png#gh-dark-mode-only)
