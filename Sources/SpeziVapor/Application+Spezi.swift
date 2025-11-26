@@ -10,6 +10,10 @@
 import Vapor
 
 public struct SpeziApplicationNamespace {
+    private enum SpeziStorageKey: StorageKey {
+        typealias Value = Spezi
+    }
+    
     private let application: Application
     
     var spezi: Spezi {
@@ -47,10 +51,6 @@ public struct SpeziApplicationNamespace {
     public subscript<M: Module>(_ type: M?.Type) -> M? {
         spezi.module()
     }
-}
-
-enum SpeziStorageKey: StorageKey {
-    typealias Value = Spezi
 }
 
 extension Application {
