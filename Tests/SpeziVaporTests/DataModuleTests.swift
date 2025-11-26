@@ -9,6 +9,7 @@
 import Spezi
 @testable import SpeziVapor
 import Testing
+import Vapor
 
 
 class DataModule: Module {
