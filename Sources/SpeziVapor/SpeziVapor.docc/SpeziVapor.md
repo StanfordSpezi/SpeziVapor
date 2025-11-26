@@ -1,4 +1,4 @@
-# ``TemplatePackage``
+# ``SpeziVapor``
 
 <!--
 
@@ -20,4 +20,4 @@ Please follow the steps in the README.md file to customize the code to your need
 
 ### Template Package
 
-- ``TemplatePackage``
+- ``SpeziVapor``

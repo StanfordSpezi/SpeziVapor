@@ -13,7 +13,7 @@ import PackageDescription
 
 
 let package = Package(
-    name: "TemplatePackage",
+    name: "SpeziVapor",
     platforms: [
         .iOS(.v17),
         .watchOS(.v10),
@@ -23,19 +23,27 @@ let package = Package(
         .macCatalyst(.v17)
     ],
     products: [
-        .library(name: "TemplatePackage", targets: ["TemplatePackage"])
+        .library(name: "SpeziVapor", targets: ["SpeziVapor"])
     ],
     dependencies: [
+        .package(url: "https://github.com/StanfordSpezi/Spezi.git", branch: "feature/linux-support-2"),
+        .package(url: "https://github.com/vapor/vapor.git", from: "4.115.0")
     ] + swiftLintPackage(),
     targets: [
         .target(
-            name: "TemplatePackage",
+            name: "SpeziVapor",
+            dependencies: [
+                .product(name: "Spezi", package: "Spezi"),
+                .product(name: "Vapor", package: "vapor")
+            ],
             plugins: [] + swiftLintPlugin()
         ),
         .testTarget(
-            name: "TemplatePackageTests",
+            name: "SpeziVaporTests",
             dependencies: [
-                .target(name: "TemplatePackage")
+                .product(name: "Spezi", package: "Spezi"),
+                .product(name: "VaporTesting", package: "vapor"),
+                .target(name: "SpeziVapor")
             ],
             plugins: [] + swiftLintPlugin()
         )
