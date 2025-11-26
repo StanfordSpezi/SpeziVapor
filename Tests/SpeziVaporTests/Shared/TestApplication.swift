@@ -13,31 +13,13 @@ import VaporTesting
 
 @MainActor
 func withSpeziApp(
-    standard: Standard,
+    standard: any Standard,
     @ModuleBuilder modules: () -> ModuleCollection,
     _ test: (Application) async throws -> Void
 ) async throws {
     let app = try await Application.make(.testing)
     do {
         app.spezi.configure(standard: standard, modules)
-        try routes(app)
-        try await test(app)
-    } catch {
-        try await app.asyncShutdown()
-        throw error
-    }
-    try await app.asyncShutdown()
-}
-
-@MainActor
-func withSpeziApp(
-    standard: Standard,
-    modules: [any Module],
-    _ test: (Application) async throws -> Void
-) async throws {
-    let app = try await Application.make(.testing)
-    do {
-        app.spezi.configure(standard: standard, modules: modules)
         try routes(app)
         try await test(app)
     } catch {

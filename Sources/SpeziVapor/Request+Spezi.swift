@@ -6,8 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-import Spezi
-import Vapor
+@_exported import Spezi
+@_exported import Vapor
 
 public struct SpeziRequestNamespace {
     private let request: Request

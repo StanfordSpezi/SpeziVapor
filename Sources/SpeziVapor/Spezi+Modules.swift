@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-@_spi(APISupport) import Spezi
+@_spi(APISupport) @_exported import Spezi
 
 extension Spezi {
     func module<M: Module>() -> M? {

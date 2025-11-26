@@ -46,7 +46,7 @@ struct DataModuleTests {
 
     @Test
     func dataModuleReturnsUsers() async throws {
-        try await withSpeziApp(standard: TestStandard(), modules: [DataModule(userData: testUsers)]) { app in
+        try await withSpeziApp(standard: TestStandard(), modules: { DataModule(userData: testUsers) }) { app in
             try await app.testing().test(.GET, "users", afterResponse: { @Sendable res in
                 #expect(res.status == .ok)
                 let users = try res.content.decode([DataModule.UserData].self)
@@ -59,7 +59,7 @@ struct DataModuleTests {
     
     @Test
     func dataModuleReturnsUser() async throws {
-        try await withSpeziApp(standard: TestStandard(), modules: [DataModule(userData: testUsers)]) { app in
+        try await withSpeziApp(standard: TestStandard(), modules: { DataModule(userData: testUsers) }) { app in
             try await app.testing().test(.GET, "users/1", afterResponse: { @Sendable res in
                 #expect(res.status == .ok)
                 let user = try res.content.decode(DataModule.UserData.self)
@@ -72,7 +72,7 @@ struct DataModuleTests {
     
     @Test
     func dataModuleReturnsUserNotFound() async throws {
-        try await withSpeziApp(standard: TestStandard(), modules: [DataModule(userData: testUsers)]) { app in
+        try await withSpeziApp(standard: TestStandard(), modules: { DataModule(userData: testUsers) }) { app in
             try await app.testing().test(.GET, "users/999", afterResponse: { @Sendable res in
                 #expect(res.status == .notFound)
             })

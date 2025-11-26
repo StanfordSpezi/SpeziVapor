@@ -6,8 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-@_spi(APISupport) import Spezi
-import Vapor
+@_spi(APISupport) @_exported import Spezi
+@_exported import Vapor
 
 public struct SpeziApplicationNamespace {
     private enum SpeziStorageKey: StorageKey {
@@ -32,23 +32,14 @@ public struct SpeziApplicationNamespace {
         application.storage[SpeziStorageKey.self] = Spezi(from: Configuration(standard: standard, modules))
     }
     
-    @MainActor
-    public func configure<S: Standard>(standard: S, modules: [any Module]) {
-        configure(standard: standard, {
-            for module in modules {
-                module
-            }
-        })
-    }
-    
-    public subscript<M: Module>(_ type: M.Type) -> M {
-        guard let module: M = spezi.module() else {
-            preconditionFailure("Module \(type) not configured in Spezi.")
+    public subscript<M: Module>(_: M.Type) -> M {
+        guard let module: M = self[M?.self] else {
+            preconditionFailure("Module \(M.self) not configured in Spezi.")
         }
         return module
     }
     
-    public subscript<M: Module>(_ type: M?.Type) -> M? {
+    public subscript<M: Module>(_: M?.Type) -> M? {
         spezi.module()
     }
 }

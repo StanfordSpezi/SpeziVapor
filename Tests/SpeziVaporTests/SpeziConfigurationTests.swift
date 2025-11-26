@@ -24,7 +24,7 @@ struct SpeziVaporConfigurationTest {
     
     @Test
     func accessingSpeziAfterConfiguration() async throws {
-        try await withSpeziApp(standard: TestStandard(), modules: [TestModule()]) { app in
+        try await withSpeziApp(standard: TestStandard(), modules: { TestModule() }) { app in
             #expect(app.spezi.spezi != nil)
         }
     }
@@ -39,7 +39,7 @@ struct SpeziVaporConfigurationTest {
     @Test
     func accessingConfiguredModule() async throws {
         let testModule = TestModule()
-        try await withSpeziApp(standard: TestStandard(), modules: [testModule]) { app in
+        try await withSpeziApp(standard: TestStandard(), modules: { testModule }) { app in
             #expect(app.spezi[TestModule.self] === testModule)
             #expect(app.spezi[TestModule?.self] === testModule)
             #expect(app.spezi[TestModule.self] !== TestModule())
@@ -50,7 +50,7 @@ struct SpeziVaporConfigurationTest {
     @Test
     func accessingUnconfiguredModule() async throws {
         await #expect(processExitsWith: .failure) {
-            try await withSpeziApp(standard: TestStandard(), modules: []) { app in
+            try await withSpeziApp(standard: TestStandard(), modules: {}) { app in
                 #expect(app.spezi[TestModule?.self] == nil)
                 _ = app.spezi[TestModule.self]
             }

@@ -26,6 +26,7 @@ let package = Package(
         .library(name: "SpeziVapor", targets: ["SpeziVapor"])
     ],
     dependencies: [
+        // TODO: switch to latest release once StanfordSpezi/Spezi#143 is merged
         .package(url: "https://github.com/StanfordSpezi/Spezi.git", branch: "feature/linux-support-2"),
         .package(url: "https://github.com/vapor/vapor.git", from: "4.115.0")
     ] + swiftLintPackage(),
@@ -36,6 +37,10 @@ let package = Package(
                 .product(name: "Spezi", package: "Spezi"),
                 .product(name: "Vapor", package: "vapor")
             ],
+            swiftSettings: [
+                .enableUpcomingFeature("ExistentialAny"),
+                .enableUpcomingFeature("InternalImportsByDefault")
+            ],
             plugins: [] + swiftLintPlugin()
         ),
         .testTarget(
@@ -45,6 +50,7 @@ let package = Package(
                 .product(name: "VaporTesting", package: "vapor"),
                 .target(name: "SpeziVapor")
             ],
+            swiftSettings: [.enableUpcomingFeature("ExistentialAny")],
             plugins: [] + swiftLintPlugin()
         )
     ]

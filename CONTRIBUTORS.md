@@ -10,8 +10,8 @@
              
 -->
 
-Stanford Spezi contributors
+SpeziVapor contributors
 ====================
 
 * [Paul Schmiedmayer](https://github.com/PSchmiedmayer)
-* [Vishnu Ravi](https://github.com/vishnuravi)
+* [Philipp Nagy](https://github.com/phnagy)
