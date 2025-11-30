@@ -13,5 +13,6 @@
 SpeziVapor contributors
 ====================
 
-* [Paul Schmiedmayer](https://github.com/PSchmiedmayer)
 * [Philipp Nagy](https://github.com/phnagy)
+* [Lukas Kollmer](https://github.com/lukaskollmer)
+* [Paul Schmiedmayer](https://github.com/PSchmiedmayer)

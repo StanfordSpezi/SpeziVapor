@@ -6,13 +6,12 @@
 # SPDX-License-Identifier: MIT
 #
 
-FROM swift:latest AS build
+FROM swift:latest
 
 WORKDIR /build
-COPY ./Package.* ./
-COPY . .
 
+COPY Package.swift Package.resolved ./
 RUN swift package resolve
-
-# Run Tests
+COPY Sources/ Sources/
+COPY Tests/ Tests/
 RUN swift test

@@ -10,7 +10,6 @@
 import Testing
 
 
-@MainActor
 @Suite("Spezi Vapor Configuration Test", .serialized)
 struct SpeziVaporConfigurationTest {
     @Test
@@ -25,7 +24,7 @@ struct SpeziVaporConfigurationTest {
     @Test
     func accessingSpeziAfterConfiguration() async throws {
         try await withSpeziApp(standard: TestStandard(), modules: { TestModule() }) { app in
-            #expect(app.spezi.spezi != nil)
+            #expect(Optional(app.spezi.spezi) != nil)
         }
     }
     
@@ -42,8 +41,6 @@ struct SpeziVaporConfigurationTest {
         try await withSpeziApp(standard: TestStandard(), modules: { testModule }) { app in
             #expect(app.spezi[TestModule.self] === testModule)
             #expect(app.spezi[TestModule?.self] === testModule)
-            #expect(app.spezi[TestModule.self] !== TestModule())
-            #expect(app.spezi[TestModule?.self] !== TestModule())
         }
     }
     

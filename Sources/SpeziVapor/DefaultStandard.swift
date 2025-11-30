@@ -6,10 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-@_spi(APISupport) @_exported import Spezi
+import Spezi
 
-extension Spezi {
-    func module<M: Module>() -> M? {
-        modules.first { $0 is M } as? M
-    }
+package actor DefaultStandard: Standard {
+    package init() {}
 }

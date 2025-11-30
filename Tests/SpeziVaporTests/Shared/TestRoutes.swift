@@ -10,13 +10,13 @@ import Vapor
 
 
 func routes(_ app: Application) throws {
-    app.get("users") { req async throws -> [DataModule.UserData] in
-        let dataModule = req.spezi[DataModule.self]
+    app.get("users") { req async throws -> [UserData] in
+        let dataModule = req.spezi[TestModule.self]
         return dataModule.getAllUsers()
     }
     
-    app.get("users", ":id") { req async throws -> DataModule.UserData in
-        let dataModule = req.spezi[DataModule.self]
+    app.get("users", ":id") { req async throws -> UserData in
+        let dataModule = req.spezi[TestModule.self]
         guard let idString = req.parameters.get("id"),
               let id = Int(idString),
               let user = dataModule.getUser(byId: id) else {
