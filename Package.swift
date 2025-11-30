@@ -15,12 +15,7 @@ import PackageDescription
 let package = Package(
     name: "SpeziVapor",
     platforms: [
-        .iOS(.v17),
-        .watchOS(.v10),
-        .visionOS(.v1),
-        .tvOS(.v17),
-        .macOS(.v14),
-        .macCatalyst(.v17)
+        .macOS(.v14)
     ],
     products: [
         .library(name: "SpeziVapor", targets: ["SpeziVapor"])
