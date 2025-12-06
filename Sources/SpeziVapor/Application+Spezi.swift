@@ -67,6 +67,9 @@ extension Application {
         @MainActor
         public func configure<S: Standard>(standard: S, @ModuleBuilder _ modules: () -> ModuleCollection) {
             application.storage[SpeziStorageKey.self] = _Spezi(from: Configuration(standard: standard, modules))
+            Task {
+                await spezi.run()
+            }
         }
 
         /// Configures Spezi with the default standard and a collection of modules.
