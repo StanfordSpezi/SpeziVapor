@@ -7,6 +7,7 @@
 //
 
 @testable import SpeziVapor
+import SpeziVaporTesting
 import Testing
 
 
@@ -19,7 +20,7 @@ struct DataModuleTests {
 
     @Test
     func dataModuleReturnsUsers() async throws {
-        try await withSpeziApp(standard: TestStandard(), modules: { TestModule(userData: testUsers) }) { app in
+        try await withSpeziVaporApp(routes: routes, standard: TestStandard(), modules: { TestModule(userData: testUsers) }) { app in
             try await app.testing().test(.GET, "users", afterResponse: { res in
                 #expect(res.status == .ok)
                 let users = try res.content.decode([UserData].self)
@@ -32,7 +33,7 @@ struct DataModuleTests {
     
     @Test
     func dataModuleReturnsUser() async throws {
-        try await withSpeziApp(standard: TestStandard(), modules: { TestModule(userData: testUsers) }) { app in
+        try await withSpeziVaporApp(routes: routes, modules: { TestModule(userData: testUsers) }) { app in
             try await app.testing().test(.GET, "users/1", afterResponse: { res in
                 #expect(res.status == .ok)
                 let user = try res.content.decode(UserData.self)
@@ -45,7 +46,7 @@ struct DataModuleTests {
     
     @Test
     func dataModuleReturnsUserNotFound() async throws {
-        try await withSpeziApp(standard: TestStandard(), modules: { TestModule(userData: testUsers) }) { app in
+        try await withSpeziVaporApp(routes: routes, modules: { TestModule(userData: testUsers) }) { app in
             try await app.testing().test(.GET, "users/999", afterResponse: { res in
                 #expect(res.status == .notFound)
             })

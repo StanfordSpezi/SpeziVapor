@@ -7,23 +7,15 @@
 //
 
 @testable import SpeziVapor
+import SpeziVaporTesting
 import Testing
 
 
 @Suite("Spezi Vapor Configuration Test", .serialized)
 struct SpeziVaporConfigurationTest {
     @Test
-    func accessingSpeziBeforeConfiguration() async throws {
-        await #expect(processExitsWith: .failure) {
-            try await withApp { app in
-                _ = app.spezi.spezi
-            }
-        }
-    }
-    
-    @Test
-    func accessingSpeziAfterConfiguration() async throws {
-        try await withSpeziApp(standard: TestStandard(), modules: { TestModule() }) { app in
+    func accessingSpezi() async throws {
+        try await withSpeziVaporApp(standard: TestStandard(), modules: { TestModule() }) { app in
             #expect(Optional(app.spezi.spezi) != nil)
         }
     }
@@ -31,14 +23,14 @@ struct SpeziVaporConfigurationTest {
     @Test
     func moduleConfigureIsCalled() async throws {
         try await confirmation { confirmation in
-            try await withSpeziApp(standard: TestStandard(), modules: { TestModule(confirmation: confirmation) }) { _ in }
+            try await withSpeziVaporApp(standard: TestStandard(), modules: { TestModule(confirmation: confirmation) }) { _ in }
         }
     }
     
     @Test
     func accessingConfiguredModule() async throws {
         let testModule = TestModule()
-        try await withSpeziApp(standard: TestStandard(), modules: { testModule }) { app in
+        try await withSpeziVaporApp(standard: TestStandard(), modules: { testModule }) { app in
             #expect(app.spezi[TestModule.self] === testModule)
             #expect(app.spezi[TestModule?.self] === testModule)
         }
@@ -47,7 +39,7 @@ struct SpeziVaporConfigurationTest {
     @Test
     func accessingUnconfiguredModule() async throws {
         await #expect(processExitsWith: .failure) {
-            try await withSpeziApp(standard: TestStandard(), modules: {}) { app in
+            try await withSpeziVaporApp(standard: TestStandard(), modules: {}) { app in
                 #expect(app.spezi[TestModule?.self] == nil)
                 _ = app.spezi[TestModule.self]
             }

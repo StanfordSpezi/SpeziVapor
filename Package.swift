@@ -18,7 +18,8 @@ let package = Package(
         .macOS(.v14)
     ],
     products: [
-        .library(name: "SpeziVapor", targets: ["SpeziVapor"])
+        .library(name: "SpeziVapor", targets: ["SpeziVapor"]),
+        .library(name: "SpeziVaporTesting", targets: ["SpeziVaporTesting"])
     ],
     dependencies: [
         // TODO: switch to latest release once StanfordSpezi/Spezi#143 is merged
@@ -38,12 +39,26 @@ let package = Package(
             ],
             plugins: [] + swiftLintPlugin()
         ),
+        .target(
+            name: "SpeziVaporTesting",
+            dependencies: [
+                .target(name: "SpeziVapor"),
+                .product(name: "Spezi", package: "Spezi"),
+                .product(name: "VaporTesting", package: "vapor")
+            ],
+            swiftSettings: [
+                .enableUpcomingFeature("ExistentialAny"),
+                .enableUpcomingFeature("InternalImportsByDefault")
+            ],
+            plugins: [] + swiftLintPlugin()
+        ),
         .testTarget(
             name: "SpeziVaporTests",
             dependencies: [
                 .product(name: "Spezi", package: "Spezi"),
                 .product(name: "VaporTesting", package: "vapor"),
-                .target(name: "SpeziVapor")
+                .target(name: "SpeziVapor"),
+                .target(name: "SpeziVaporTesting")
             ],
             swiftSettings: [.enableUpcomingFeature("ExistentialAny")],
             plugins: [] + swiftLintPlugin()
