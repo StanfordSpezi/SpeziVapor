@@ -1,9 +1,9 @@
 // swift-tools-version:6.0
 
 //
-// This source file is part of the TemplatePackage open source project
+// This source file is part of the Stanford Spezi open source project
 // 
-// SPDX-FileCopyrightText: 2022 Stanford University and the project authors (see CONTRIBUTORS.md)
+// SPDX-FileCopyrightText: 2025 Stanford University and the project authors (see CONTRIBUTORS.md)
 // 
 // SPDX-License-Identifier: MIT
 //
@@ -13,30 +13,53 @@ import PackageDescription
 
 
 let package = Package(
-    name: "TemplatePackage",
+    name: "SpeziVapor",
     platforms: [
-        .iOS(.v17),
-        .watchOS(.v10),
-        .visionOS(.v1),
-        .tvOS(.v17),
-        .macOS(.v14),
-        .macCatalyst(.v17)
+        .macOS(.v14)
     ],
     products: [
-        .library(name: "TemplatePackage", targets: ["TemplatePackage"])
+        .library(name: "SpeziVapor", targets: ["SpeziVapor"]),
+        .library(name: "SpeziVaporTesting", targets: ["SpeziVaporTesting"])
     ],
     dependencies: [
+        .package(url: "https://github.com/StanfordSpezi/Spezi.git", from: "1.10.0"),
+        .package(url: "https://github.com/vapor/vapor.git", from: "4.115.0")
     ] + swiftLintPackage(),
     targets: [
         .target(
-            name: "TemplatePackage",
+            name: "SpeziVapor",
+            dependencies: [
+                .product(name: "Spezi", package: "Spezi"),
+                .product(name: "Vapor", package: "vapor")
+            ],
+            swiftSettings: [
+                .enableUpcomingFeature("ExistentialAny"),
+                .enableUpcomingFeature("InternalImportsByDefault")
+            ],
+            plugins: [] + swiftLintPlugin()
+        ),
+        .target(
+            name: "SpeziVaporTesting",
+            dependencies: [
+                .target(name: "SpeziVapor"),
+                .product(name: "Spezi", package: "Spezi"),
+                .product(name: "VaporTesting", package: "vapor")
+            ],
+            swiftSettings: [
+                .enableUpcomingFeature("ExistentialAny"),
+                .enableUpcomingFeature("InternalImportsByDefault")
+            ],
             plugins: [] + swiftLintPlugin()
         ),
         .testTarget(
-            name: "TemplatePackageTests",
+            name: "SpeziVaporTests",
             dependencies: [
-                .target(name: "TemplatePackage")
+                .product(name: "Spezi", package: "Spezi"),
+                .product(name: "VaporTesting", package: "vapor"),
+                .target(name: "SpeziVapor"),
+                .target(name: "SpeziVaporTesting")
             ],
+            swiftSettings: [.enableUpcomingFeature("ExistentialAny")],
             plugins: [] + swiftLintPlugin()
         )
     ]
