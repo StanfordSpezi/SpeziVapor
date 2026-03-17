@@ -27,6 +27,7 @@ jobs:
       matrix:
         config: [Debug, Release]
     with:
+      build_configuration: ${{ matrix.config }}
       artifact_name: ${{ format('SpeziVapor-Package-Linux-{0}.lcov', matrix.config) }}
   uploadcoveragereport:
     name: Upload Coverage Report
