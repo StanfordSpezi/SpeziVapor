@@ -26,7 +26,11 @@ jobs:
     strategy:
       matrix:
         config: [Debug, Release]
+      fail-fast: false
     with:
+      runs_on_labels: '["blacksmith-4vcpu-ubuntu-2404"]'
+      build_configuration: ${{ matrix.config }}
+      test_flags: '--no-parallel'
       artifact_name: ${{ format('SpeziVapor-Package-Linux-{0}.lcov', matrix.config) }}
   uploadcoveragereport:
     name: Upload Coverage Report

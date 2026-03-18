@@ -12,7 +12,6 @@ SPDX-License-Identifier: MIT
 
 [![Build and Test](https://github.com/StanfordSpezi/SpeziVapor/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/StanfordSpezi/SpeziVapor/actions/workflows/build-and-test.yml)
 [![codecov](https://codecov.io/gh/StanfordSpezi/SpeziVapor/branch/main/graph/badge.svg?token=X7BQYSUKOH)](https://codecov.io/gh/StanfordSpezi/SpeziVapor)
-[![DOI](https://zenodo.org/badge/TODO)](https://zenodo.org/badge/latestdoi/TODO) 
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FStanfordSpezi%2FSpeziVapor%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/StanfordSpezi/SpeziVapor)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FStanfordSpezi%2FSpeziVapor%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/StanfordSpezi/SpeziVapor)
 
@@ -74,7 +73,7 @@ The project can be added to your Xcode project or Swift Package using the [Swift
 
 **Xcode:** For an Xcode project, follow the instructions on [adding package dependencies to your app](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app).
 
-**Swift Package:** You can follow the [Swift Package Manager documentation about defining dependencies](https://github.com/apple/swift-package-manager/blob/main/Documentation/Usage.md#defining-dependencies) to add this project as a dependency to your Swift Package.
+**Swift Package:** You can follow the [Swift Package Manager documentation about defining dependencies](https://docs.swift.org/swiftpm/documentation/packagemanagerdocs/addingdependencies/) to add this project as a dependency to your Swift Package.
 
 
 ## License
