@@ -26,6 +26,7 @@ jobs:
     strategy:
       matrix:
         config: [Debug, Release]
+      fail-fast: false
     with:
       build_configuration: ${{ matrix.config }}
       artifact_name: ${{ format('SpeziVapor-Package-Linux-{0}.lcov', matrix.config) }}
