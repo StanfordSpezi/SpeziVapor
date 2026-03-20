@@ -74,8 +74,9 @@ public struct SpeziVapor: Sendable {
     ///   - modules: A result builder closure that returns the modules to configure.
     @MainActor
     public func configure<S: Standard>(standard: S, @ModuleBuilder _ modules: () -> ModuleCollection) {
-        application.storage[SpeziStorageKey.self] = Spezi(from: Configuration(standard: standard, modules))
-        Task {
+        let spezi = Spezi(from: Configuration(standard: standard, modules))
+        application.storage[SpeziStorageKey.self] = spezi
+        Task { [spezi] in
             await spezi.run()
         }
     }
