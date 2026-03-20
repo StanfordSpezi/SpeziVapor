@@ -1,4 +1,4 @@
-// swift-tools-version:6.0
+// swift-tools-version:6.2
 
 //
 // This source file is part of the Stanford Spezi open source project
@@ -15,7 +15,7 @@ import PackageDescription
 let package = Package(
     name: "SpeziVapor",
     platforms: [
-        .macOS(.v14)
+        .macOS(.v26)
     ],
     products: [
         .library(name: "SpeziVapor", targets: ["SpeziVapor"]),
