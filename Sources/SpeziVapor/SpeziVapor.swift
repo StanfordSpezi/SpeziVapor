@@ -75,7 +75,7 @@ public struct SpeziVapor: Sendable {
     @MainActor
     public func configure<S: Standard>(standard: S, @ModuleBuilder _ modules: () -> ModuleCollection) {
         application.storage[SpeziStorageKey.self] = Spezi(from: Configuration(standard: standard, modules))
-        Task {
+        Task.immediate {
             await spezi.run()
         }
     }
